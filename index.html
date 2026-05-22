@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan | Hilda & Ricky</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&family=Parisienne&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css for scroll animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sage-100': '#e3e8e1',
+                        'sage-300': '#bdcbb6',
+                        'sage-600': '#728a68',
+                        'sage-800': '#4a5d43',
+                        'gold-light': '#f4e6ce',
+                        'gold': '#d4af37',
+                    },
+                    fontFamily: {
+                        'serif': ['"Cormorant Garamond"', 'serif'],
+                        'sans': ['"Montserrat"', 'sans-serif'],
+                        'handwriting': ['"Parisienne"', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'floral-pattern': "url('https://www.transparenttextures.com/patterns/rice-paper-2.png')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for smooth scrolling and animations */
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: #fcfcfc; 
+            overflow-x: hidden;
+            /* Simple floral background texture */
+            background-image: url('https://www.transparenttextures.com/patterns/rice-paper-2.png');
+        }
+        
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Cover Overlay */
+        #cover {
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        }
+        .open-cover {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased overflow-hidden" id="body">
+
+    <!-- Cover Overlay (First thing users see) -->
+    <div id="cover" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-sage-100 bg-floral-pattern">
+        <!-- Decorative Top Elements -->
+        <div class="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 opacity-40" style="background: radial-gradient(circle at top left, #bdcbb6, transparent);"></div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-40" style="background: radial-gradient(circle at bottom right, #bdcbb6, transparent);"></div>
+
+        <div class="text-center z-10 p-6 glass rounded-2xl shadow-xl max-w-sm w-11/12 animate__animated animate__fadeIn">
+            <p class="text-sm tracking-[0.2em] uppercase text-sage-800 mb-2 font-semibold">The Wedding Of</p>
+            <h1 class="font-handwriting text-5xl md:text-6xl text-sage-800 mb-4 py-2">Hilda & Ricky</h1>
+            <p class="text-sm text-gray-600 mb-8 font-serif italic">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+            
+            <button onclick="openInvitation()" class="bg-sage-600 hover:bg-sage-800 text-white px-8 py-3 rounded-full transition duration-300 shadow-md flex items-center justify-center mx-auto space-x-2 text-sm uppercase tracking-wider font-semibold">
+                <i class="fa-solid fa-envelope-open text-gold-light"></i>
+                <span>Buka Undangan</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="w-full max-w-lg mx-auto bg-white shadow-2xl min-h-screen relative">
+        
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center p-8 bg-sage-100">
+            <!-- Background Image (Placeholder) -->
+            <div class="absolute inset-0 z-0 opacity-20">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wedding Background" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="z-10 mt-12 fade-in-section">
+                <p class="text-xs tracking-[0.3em] text-sage-800 uppercase mb-4 font-semibold">Pernikahan</p>
+                <div class="w-px h-16 bg-sage-600 mx-auto mb-6"></div>
+                <h1 class="font-handwriting text-6xl md:text-7xl text-sage-800 leading-tight">Hilda <br><span class="text-3xl font-serif text-gold">&</span><br> Ricky</h1>
+                <div class="w-px h-16 bg-sage-600 mx-auto mt-6 mb-4"></div>
+                <p class="font-serif text-xl text-sage-800 italic">26 . 05 . 2026</p>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 z-10 animate-bounce text-sage-600">
+                <i class="fa-solid fa-chevron-down text-xl"></i>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="py-16 px-8 text-center bg-white fade-in-section">
+            <i class="fa-solid fa-quote-left text-2xl text-sage-300 mb-4"></i>
+            <p class="font-serif text-lg leading-relaxed text-gray-700 italic">
+                "Di antara tanda-tanda kebesaran-Nya, Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya..."
+            </p>
+            <p class="mt-4 text-sm font-semibold text-sage-600">(QS. Ar-Rum: 21)</p>
+        </section>
+
+        <!-- Couple Section -->
+        <section class="py-16 px-6 bg-sage-50 relative">
+            <div class="text-center mb-12 fade-in-section">
+                <h2 class="font-handwriting text-4xl text-sage-800 mb-2">Mempelai</h2>
+                <p class="text-xs tracking-widest text-gray-500 uppercase">Dengan Memohon Rahmat Allah SWT</p>
+            </div>
+
+            <!-- Bride -->
+            <div class="flex flex-col items-center text-center mb-16 fade-in-section">
+                <!-- Langsung menampilkan nama dengan tipografi yang elegan -->
+                <h3 class="font-handwriting text-6xl md:text-7xl text-sage-800 mb-4 drop-shadow-sm">Hilda</h3>
+                <p class="text-xs text-gray-500 mb-2 uppercase tracking-[0.2em]">Putri dari</p>
+                <p class="font-serif font-bold text-lg text-gray-800">Bapak [Nama Ayah] & Ibu [Nama Ibu]</p>
+                <a href="#" class="mt-4 bg-sage-100 hover:bg-sage-200 text-sage-600 rounded-full w-10 h-10 flex items-center justify-center transition duration-300"><i class="fa-brands fa-instagram text-lg"></i></a>
+            </div>
+
+            <!-- Divider Elegan -->
+            <div class="flex justify-center items-center mb-16 fade-in-section">
+                <div class="w-16 h-px bg-sage-300"></div>
+                <span class="mx-6 text-5xl font-handwriting text-gold">&</span>
+                <div class="w-16 h-px bg-sage-300"></div>
+            </div>
+
+            <!-- Groom -->
+            <div class="flex flex-col items-center text-center fade-in-section">
+                <!-- Langsung menampilkan nama dengan tipografi yang elegan -->
+                <h3 class="font-handwriting text-6xl md:text-7xl text-sage-800 mb-4 drop-shadow-sm">Ricky Yusuf Saputra</h3>
+                <p class="text-xs text-gray-500 mb-2 uppercase tracking-[0.2em]">Putra dari</p>
+                <p class="font-serif font-bold text-lg text-gray-800">Bapak [Nama Ayah] & Ibu [Nama Ibu]</p>
+                <a href="#" class="mt-4 bg-sage-100 hover:bg-sage-200 text-sage-600 rounded-full w-10 h-10 flex items-center justify-center transition duration-300"><i class="fa-brands fa-instagram text-lg"></i></a>
+            </div>
+        </section>
+
+        <!-- Gallery Section (2 Foto Berdua) -->
+        <section class="py-16 px-6 bg-white relative">
+            <div class="text-center mb-10 fade-in-section">
+                <h2 class="font-handwriting text-4xl text-sage-800 mb-2">Momen Bahagia</h2>
+                <div class="w-12 h-1 bg-gold mx-auto rounded"></div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center fade-in-section">
+                <div class="w-full md:w-1/2 h-80 rounded-2xl overflow-hidden shadow-lg border-4 border-sage-100">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foto Berdua 1" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="w-full md:w-1/2 h-80 rounded-2xl overflow-hidden shadow-lg border-4 border-sage-100">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foto Berdua 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details Section -->
+        <section class="py-20 px-6 bg-sage-50 relative">
+            <div class="text-center mb-12 fade-in-section">
+                <h2 class="font-handwriting text-4xl text-sage-800 mb-2">Waktu & Tempat</h2>
+                <div class="w-12 h-1 bg-gold mx-auto rounded"></div>
+            </div>
+
+            <!-- Event Card -->
+            <div class="bg-sage-100 rounded-2xl p-8 text-center shadow-lg border border-sage-300 relative overflow-hidden fade-in-section">
+                <!-- Decorative corner -->
+                <i class="fa-solid fa-leaf absolute top-4 left-4 text-sage-300 opacity-50 transform -rotate-45 text-2xl"></i>
+                <i class="fa-solid fa-leaf absolute bottom-4 right-4 text-sage-300 opacity-50 transform rotate-135 text-2xl"></i>
+
+                <h3 class="font-serif text-2xl font-bold text-sage-800 mb-4">Akad & Resepsi</h3>
+                
+                <div class="flex justify-center items-center space-x-4 mb-6">
+                    <div class="text-right">
+                        <p class="text-sm font-semibold uppercase text-gray-500">Selasa</p>
+                    </div>
+                    <div class="px-4 py-2 bg-white rounded-lg shadow-inner text-2xl font-bold text-sage-800">
+                        26
+                    </div>
+                    <div class="text-left">
+                        <p class="text-sm font-semibold uppercase text-gray-500">Mei<br>2026</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 mb-8">
+                    <div>
+                        <i class="fa-regular fa-clock text-sage-600 mb-1"></i>
+                        <p class="font-semibold text-gray-800">09.00 WIB - Selesai</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-location-dot text-sage-600 mb-1"></i>
+                        <p class="font-semibold text-gray-800">Kediaman Mempelai Wanita</p>
+                        <p class="text-sm text-gray-600">Desa Pagar Mayang,<br>Rokan Hulu, Riau</p>
+                    </div>
+                </div>
+
+                <a href="https://maps.google.com" target="_blank" class="inline-block bg-sage-800 hover:bg-sage-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition shadow-md">
+                    <i class="fa-solid fa-map-location-dot mr-2"></i>Lihat Lokasi
+                </a>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="mt-16 text-center fade-in-section">
+                <h3 class="font-serif text-xl italic text-sage-800 mb-6">Menuju Hari Bahagia</h3>
+                <div class="flex justify-center space-x-3 md:space-x-4" id="countdown">
+                    <div class="bg-white border-2 border-sage-300 w-16 h-16 md:w-20 md:h-20 rounded-xl flex flex-col items-center justify-center shadow-sm">
+                        <span id="days" class="text-2xl md:text-3xl font-bold text-sage-800">00</span>
+                        <span class="text-[10px] md:text-xs uppercase text-gray-500">Hari</span>
+                    </div>
+                    <div class="bg-white border-2 border-sage-300 w-16 h-16 md:w-20 md:h-20 rounded-xl flex flex-col items-center justify-center shadow-sm">
+                        <span id="hours" class="text-2xl md:text-3xl font-bold text-sage-800">00</span>
+                        <span class="text-[10px] md:text-xs uppercase text-gray-500">Jam</span>
+                    </div>
+                    <div class="bg-white border-2 border-sage-300 w-16 h-16 md:w-20 md:h-20 rounded-xl flex flex-col items-center justify-center shadow-sm">
+                        <span id="minutes" class="text-2xl md:text-3xl font-bold text-sage-800">00</span>
+                        <span class="text-[10px] md:text-xs uppercase text-gray-500">Menit</span>
+                    </div>
+                    <div class="bg-white border-2 border-sage-300 w-16 h-16 md:w-20 md:h-20 rounded-xl flex flex-col items-center justify-center shadow-sm">
+                        <span id="seconds" class="text-2xl md:text-3xl font-bold text-sage-800">00</span>
+                        <span class="text-[10px] md:text-xs uppercase text-gray-500">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section class="py-16 px-6 bg-white fade-in-section">
+            <div class="text-center mb-10">
+                <h2 class="font-handwriting text-4xl text-sage-800 mb-2">Konfirmasi Kehadiran</h2>
+                <p class="text-sm text-gray-600">Mohon konfirmasi kehadiran Bapak/Ibu/Saudara/i</p>
+            </div>
+
+            <form id="rsvp-form" class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" name="nama" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sage-500 focus:border-sage-500 outline-none transition" placeholder="Masukkan nama Anda">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Jumlah Tamu</label>
+                    <select name="jumlah" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sage-500 focus:border-sage-500 outline-none transition">
+                        <option value="1">1 Orang</option>
+                        <option value="2">2 Orang</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi</label>
+                    <select name="konfirmasi" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sage-500 focus:border-sage-500 outline-none transition">
+                        <option value="Hadir">Ya, Saya akan hadir</option>
+                        <option value="Tidak Hadir">Maaf, Saya tidak bisa hadir</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Pesan & Doa</label>
+                    <textarea name="pesan" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sage-500 focus:border-sage-500 outline-none transition resize-none" placeholder="Berikan doa restu..."></textarea>
+                </div>
+                <button type="submit" id="submit-btn" class="w-full bg-sage-600 hover:bg-sage-800 text-white font-bold py-3 px-4 rounded-lg transition shadow-md flex justify-center items-center">
+                    <span>Kirim Konfirmasi</span>
+                </button>
+                
+                <!-- Pesan Sukses -->
+                <div id="success-message" class="hidden mt-4 p-3 bg-green-100 text-green-700 rounded-lg text-center text-sm font-semibold">
+                    Terima kasih! Konfirmasi Anda telah terkirim.
+                </div>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-sage-100 py-10 text-center">
+            <h2 class="font-handwriting text-3xl text-sage-800 mb-4">Hilda & Ricky</h2>
+            <p class="text-sm text-gray-600 mb-6 px-8">Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+            <p class="font-semibold text-sage-800">Terima Kasih</p>
+            <p class="text-xs text-gray-400 mt-8">Dibuat dengan ❤️ untuk momen spesial.</p>
+        </footer>
+
+        <!-- Music Button (Floating) -->
+        <button id="musicToggle" class="fixed bottom-6 right-6 w-12 h-12 bg-gold text-white rounded-full shadow-lg flex items-center justify-center z-40 transition-transform hover:scale-110 hidden">
+            <i class="fa-solid fa-music animate-pulse"></i>
+        </button>
+        <!-- Audio Element (Placeholder URL) -->
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. Open Invitation Logic ---
+        function openInvitation() {
+            try {
+                const cover = document.getElementById('cover');
+                const body = document.getElementById('body');
+                const musicBtn = document.getElementById('musicToggle');
+                const audio = document.getElementById('bgMusic');
+
+                // Sembunyikan cover
+                if(cover) cover.classList.add('open-cover');
+                
+                // Izinkan scroll
+                if(body) body.classList.remove('overflow-hidden');
+
+                // Tampilkan dan putar musik
+                if(musicBtn) musicBtn.classList.remove('hidden');
+                
+                if(audio) {
+                    audio.volume = 0.5;
+                    let playPromise = audio.play();
+                    // Menghindari error jika browser memblokir auto-play
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            isPlaying = true;
+                            updateMusicIcon();
+                        }).catch(error => {
+                            console.log("Auto-play diblokir oleh browser (harus diklik manual).");
+                        });
+                    }
+                }
+            } catch (err) {
+                console.error("Terjadi kesalahan:", err);
+            }
+        }
+
+        // --- 2. Music Player Toggle ---
+        let isPlaying = false;
+        
+        function updateMusicIcon() {
+            const musicToggleBtn = document.getElementById('musicToggle');
+            if(!musicToggleBtn) return;
+            
+            if(isPlaying) {
+                musicToggleBtn.innerHTML = '<i class="fa-solid fa-music animate-pulse"></i>';
+                musicToggleBtn.classList.remove('bg-gray-400');
+                musicToggleBtn.classList.add('bg-gold');
+            } else {
+                musicToggleBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+                musicToggleBtn.classList.remove('bg-gold');
+                musicToggleBtn.classList.add('bg-gray-400');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const musicToggleBtn = document.getElementById('musicToggle');
+            const audio = document.getElementById('bgMusic');
+            
+            if(musicToggleBtn && audio) {
+                musicToggleBtn.addEventListener('click', () => {
+                    if (isPlaying) {
+                        audio.pause();
+                    } else {
+                        audio.play();
+                    }
+                    isPlaying = !isPlaying;
+                    updateMusicIcon();
+                });
+            }
+        });
+
+        // --- 3. Scroll Animation Logic ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            const sections = document.querySelectorAll('.fade-in-section');
+            sections.forEach(section => observer.observe(section));
+        });
+
+        // --- 4. Countdown Timer ---
+        document.addEventListener("DOMContentLoaded", function() {
+            try {
+                const countDownDate = new Date("May 26, 2026 09:00:00").getTime();
+                const x = setInterval(function() {
+                    const now = new Date().getTime();
+                    const distance = countDownDate - now;
+
+                    const daysEl = document.getElementById("days");
+                    const hoursEl = document.getElementById("hours");
+                    const minutesEl = document.getElementById("minutes");
+                    const secondsEl = document.getElementById("seconds");
+
+                    if(daysEl && hoursEl && minutesEl && secondsEl) {
+                        daysEl.innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                        hoursEl.innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                        minutesEl.innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                        secondsEl.innerHTML = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+
+                        if (distance < 0) {
+                            clearInterval(x);
+                            const countdownContainer = document.getElementById("countdown");
+                            if(countdownContainer) countdownContainer.innerHTML = "<div class='text-xl font-bold text-sage-800'>Acara Telah Berlangsung</div>";
+                        }
+                    }
+                }, 1000);
+            } catch(e) {}
+        });
+
+        // --- 5. Google Sheets Form Submission ---
+        document.addEventListener("DOMContentLoaded", function() {
+            try {
+                // Hati-hati saat mengganti link di bawah, pastikan tanda kutip tunggal (' ') tidak terhapus
+                const scriptURL = 'MASUKKAN_URL_WEB_APP_GOOGLE_SCRIPT_ANDA_DI_SINI'; 
+                
+                const form = document.getElementById('rsvp-form');
+                const submitBtn = document.getElementById('submit-btn');
+                const successMessage = document.getElementById('success-message');
+
+                if(form) {
+                    form.addEventListener('submit', e => {
+                        e.preventDefault();
+                        
+                        // Cek apakah user sudah memasukkan link aslinya
+                        if(scriptURL === 'MASUKKAN_URL_WEB_APP_GOOGLE_SCRIPT_ANDA_DI_SINI' || scriptURL === '') {
+                            alert("Mohon masukkan URL Google Script Anda terlebih dahulu di dalam kode agar data bisa tersimpan.");
+                            return;
+                        }
+
+                        const originalBtnText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengirim...';
+                        submitBtn.disabled = true;
+
+                        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                            .then(response => {
+                                successMessage.classList.remove('hidden');
+                                form.reset();
+                                submitBtn.innerHTML = originalBtnText;
+                                submitBtn.disabled = false;
+                                setTimeout(() => successMessage.classList.add('hidden'), 5000);
+                            })
+                            .catch(error => {
+                                alert('Maaf, terjadi kesalahan. Pastikan link Web App Google Script sudah benar.');
+                                submitBtn.innerHTML = originalBtnText;
+                                submitBtn.disabled = false;
+                            });
+                    });
+                }
+            } catch(e) {
+                console.error("Terjadi masalah pada form: ", e);
+            }
+        });
+    </script>
+</body>
+</html>
